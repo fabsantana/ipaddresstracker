@@ -65,13 +65,21 @@ body {
     color:  white;
     display: grid;
     place-items: center;
+    padding: 1.5rem 1.5rem 5rem 1.5rem;
 }
 
 .input-container{
     display: flex;
     justify-content: center;
+    width: 37%;
+    position: relative;
+    padding-bottom: 10px;
     input {
         border: none;
+        width: 100%;
+        min-height: 44px;
+        border-radius: 15px;
+        padding-left: 10px;
     }
 
     button {
@@ -79,15 +87,22 @@ body {
         background-color: black;
         color: white;
         padding: 10px 15px;
+        position: absolute;
+        right: 0;
+        border-end-end-radius: 15px;
+        border-start-end-radius: 15px;
     }
 }
 
 .info-container {
     display: flex;
-    gap: 1rem;
+    gap: 4rem;
     background-color: white;
     padding: 1.5rem;
     border-radius: 15px;
+    position: absolute;
+    top: 19%;
+    z-index: 1;
     span {
         color: #2C2C2C;
     }
@@ -99,4 +114,5 @@ body {
 #map {
     height: 65vh;
     bottom: 0;
+    z-index: 0;
 }
