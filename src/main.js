@@ -11,10 +11,19 @@ const ipAddressEl = document.getElementById('ip-address')
 const locationEl = document.getElementById('location')
 const timezoneEl = document.getElementById('timezone')
 const ispEl = document.getElementById('isp')
+const submitBtn = document.getElementById('submit')
+const ipInput = document.getElementById('ip-input')
 
-async function getIP() {
+// Regex to validate IPv4 addresses
+const ipRegex = /^(25[0-5]|2[0-4][0-9]|[0-1]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[0-1]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[0-1]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[0-1]?[0-9][0-9]?)$/;
+
+
+async function getIP(ip = '') {
     try {
-        const response = await fetch(`https://geo.ipify.org/api/v2/country,city?apiKey=${apiKey}`)
+        const url = ip 
+        ? `https://geo.ipify.org/api/v2/country,city?apiKey=${apiKey}&ipAddress=${ip}`
+        : `https://geo.ipify.org/api/v2/country,city?apiKey=${apiKey}`;
+        const response = await fetch(url)
         const data = await response.json()
         return data
     } catch (error) {
@@ -22,9 +31,9 @@ async function getIP() {
     }
 }
 
-window.onload = async () => {
+async function updateMap(ip = '') {
     try {
-        const data = await getIP()
+        const data = await getIP(ip)
         if (data) {
             ipAddressEl.textContent = data.ip
             locationEl.textContent = `${data.location.city}, ${data.location.region} ${data.location.postalCode}`
@@ -35,6 +44,19 @@ window.onload = async () => {
         }
     }
     catch (error) {
-        console.error("error updating the DOM")
+        console.error("error updating the map", error)
     }
 }
+
+window.onload = async () => {
+    await updateMap()
+}
+
+submitBtn.addEventListener('click', async () => {
+    const ip = ipInput.value.trim()
+    if (ipRegex.test(ip)) {
+        await updateMap(ip)
+    } else {
+        alert("Please enter a valid IP address!")
+    }
+})
