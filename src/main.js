@@ -27,10 +27,11 @@ window.onload = async () => {
         const data = await getIP()
         if (data) {
             ipAddressEl.textContent = data.ip
-            locationEl.textContent = `${data.location.city}, ${data.location.region}, ${data.location.country}`
-            timezoneEl.textContent = data.location.timezone
+            locationEl.textContent = `${data.location.city}, ${data.location.region} ${data.location.postalCode}`
+            timezoneEl.textContent = `UTC ${data.location.timezone}`
             ispEl.textContent = data.isp
             map.setView([data.location.lat, data.location.lng], 12)
+            L.marker([data.location.lat, data.location.lng]).addTo(map);
         }
     }
     catch (error) {
