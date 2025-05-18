@@ -76,7 +76,7 @@ body {
 }
 
 .top-container {
-    background-image: url(/images/pattern-bg-desktop.png);
+    background-image: url(../images/pattern-bg-desktop.png);
     background-size: cover;
     background-repeat: no-repeat;
     position: relative;
@@ -147,7 +147,7 @@ body {
 
 @media only screen and (max-width: 767px) {
   .top-container {
-    background-image: url(/images/pattern-bg-mobile.png);
+    background-image: url(../images/pattern-bg-mobile.png);
   }
 
   .info-container {
