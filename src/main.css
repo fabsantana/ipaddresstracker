@@ -66,13 +66,14 @@
 }
 
 body {
-    height: 100vh;
+    height: 100dvh;
     font-family: sans-serif;
     overflow: hidden;
 }
 
 #app {
-  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
 }
 
 .top-container {
@@ -84,7 +85,7 @@ body {
     display: grid;
     place-items: center;
     padding: 1.5rem 1.5rem 5rem 1.5rem;
-    height: 25vh;
+    height: 25dvh;
 }
 
 .input-container{
@@ -141,7 +142,7 @@ body {
 }
 
 #map {
-    min-height: 75vh;
+    min-height: 75dvh;
     z-index: 0;
 }
 
