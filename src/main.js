@@ -1,8 +1,15 @@
-let map = L.map('map').setView([51.505, -0.09], 13);
+let map = L.map('map', {
+    setView: ([51.505, -0.09], 13),
+    zoomControl: false
+});
 
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+}).addTo(map);
+
+L.control.zoom({
+    position: 'bottomleft'
 }).addTo(map);
 
 const apiKey = import.meta.env.VITE_IPIFY_KEY
