@@ -20,10 +20,20 @@ const timezoneEl = document.getElementById('timezone')
 const ispEl = document.getElementById('isp')
 const submitBtn = document.getElementById('submit')
 const ipInput = document.getElementById('ip-input')
+const form = document.getElementById('form')
 
 // Regex to validate IPv4 addresses
 const ipRegex = /^(25[0-5]|2[0-4][0-9]|[0-1]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[0-1]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[0-1]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[0-1]?[0-9][0-9]?)$/;
 
+form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const ip = ipInput.value.trim()
+    if (ipRegex.test(ip)) {
+        await updateMap(ip)
+    } else {
+        alert("Please enter a valid IP address!")
+    }
+})
 
 async function getIP(ip = '') {
     try {
@@ -59,11 +69,11 @@ window.onload = async () => {
     await updateMap()
 }
 
-submitBtn.addEventListener('click', async () => {
-    const ip = ipInput.value.trim()
-    if (ipRegex.test(ip)) {
-        await updateMap(ip)
-    } else {
-        alert("Please enter a valid IP address!")
-    }
-})
+// submitBtn.addEventListener('click', async () => {
+//     const ip = ipInput.value.trim()
+//     if (ipRegex.test(ip)) {
+//         await updateMap(ip)
+//     } else {
+//         alert("Please enter a valid IP address!")
+//     }
+// })
